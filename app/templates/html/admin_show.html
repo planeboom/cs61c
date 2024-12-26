@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/css/recss.css">
+    <link rel="stylesheet" href="../../static/css/animate.css">
+    <link rel="stylesheet" href="../../static/css/animate.min.css">
+</head>
+<body class="container background_order">
+
+<section>
+    {# 1.navbar #}
+    <div class="container">
+        <nav class="navbar navbar-expand-md bg-white navbar-light fixed-top">
+            <h1><a href="/" class="navbar-brand ms-5" id="brand">猫团美眼</a></h1>
+            <div class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </div>
+            <div class="collapse navbar-collapse bg-white text-center" id="navmenu">
+                <ul class="navbar-nav gap-xl-2 d-flex align-items-center ms-auto me-auto">
+                    <li class="nav-item d-none py-1 user">
+                        <div class="btn btn-white user_button" type="button">
+                        </div>
+                    </li>
+
+                    <li class="nav-item py-1 log">
+                        <a href="{{ url_for('index') }}">
+                            <button class="btn page btn-lg btn-white" data-id="complete"
+                                    type="button">
+
+                                首页
+                            </button>
+                        </a>
+                    </li>
+                    <li class="nav-item py-1 log">
+                        <a href="{{ url_for('clas') }}">
+                            <button class="btn page btn-lg btn-white" data-id="incomplete"
+                                    type="button">
+
+                                分类
+                            </button>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item log d-flex text-nowrap ">
+                        <div class="d-flex" role="search">
+                            <input type="text" name="searchinfo" id="searchinfo" class="form-control me-2">
+                            <button class="btn searchbutton border" type="submit">search</button>
+                        </div>
+                    </li>
+                    <li class="nav-item py-1 log">
+                        {% if not session.get('username') %}
+                            <a href="{{ url_for("sign_in") }}">
+                                <button class="btn btn-lg btn-white" data-bs-toggle="modal" data-bs-target="#modaladd"
+                                        type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                              d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
+                                        <path fill-rule="evenodd"
+                                              d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                    </svg>
+                                    登录
+                                </button>
+                            </a>
+                        {% endif %}
+                    </li>
+                    <li class="nav-item py-1 log">
+                        {% if session.get('username') %}
+                            <div>
+                                <div class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                       aria-expanded="false">
+                                        {{ session.get('username') }}
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        {% if not session.get('admin') %}
+                                            <li><a class="dropdown-item" href="{{ url_for('user_order') }}">我的订单</a>
+                                            </li>
+                                            <li><a class="dropdown-item" href="{{ url_for('sign_out') }}">登出</a></li>
+                                        {% else %}
+                                            <li><a class="dropdown-item" href="{{ url_for('admin_show',page_num=1) }}">管理商品</a>
+                                            </li>
+                                            <li><a class="dropdown-item" href="{{ url_for('admin_user',page_num=1) }}">管理用户</a>
+                                            </li>
+                                            <li><a class="dropdown-item" href="{{ url_for('sign_out') }}">登出</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                        {% else %}
+                            <a href="{{ url_for("sign_up") }}">
+                                <button class="btn btn-lg btn-white" data-bs-toggle="modal" data-bs-target="#modaladd"
+                                        type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-signpost" viewBox="0 0 16 16">
+                                        <path
+                                                d="M7 1.414V4H2a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h5v6h2v-6h3.532a1 1 0 0 0 .768-.36l1.933-2.32a.5.5 0 0 0 0-.64L13.3 4.36a1 1 0 0 0-.768-.36H9V1.414a1 1 0 0 0-2 0zM12.532 5l1.666 2-1.666 2H2V5z"/>
+                                    </svg>
+                                    注册
+                                </button>
+                            </a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</section>
+
+
+<section class="pt-5 container_order">
+    <h1 class="m-2">演出管理</h1>
+    <div class="mt-3 row align-items-center  border-bottom">
+        <div class=" col-5">
+            <h1 class="bold text-center cb">演出名称</h1>
+        </div>
+        <div class="col">
+            <h1 class="bold cb">演出时间</h1>
+        </div>
+        <div class="col ">
+            <h1 class="bold cb">价格区间</h1>
+        </div>
+        <div class="col">
+            <h1 class="bold cb">剩余库存</h1>
+        </div>
+
+        <div class="col">
+            <h1 class="cb bold">操作</h1></div>
+
+    </div>
+    <div class="h_8">
+        {% for concert in concerts %}
+            <div class="row py-1 py-md-2 align-items-center border-bottom">
+                <div class="col-5 text-center cb">
+                    {{ concert.name }}</div>
+                <div class="col cb">
+                    {% if concert.duration==1 %}
+                        {{ concert.start_time }}
+                    {% else %}
+                        {{ concert.start_time }}至{{ concert.end_time }}
+                    {% endif %}
+
+                </div>
+
+                <div class="col cb">
+                    ￥{{ concert.start_price }}-{{ concert.end_price }}</div>
+                <div class="col cb">
+                    {{ concert.stock }}</div>
+
+                <div class="col">
+                    {#                            information#}
+                    <div class="btn px-1 px-md-2" data-bs-toggle="modal"
+                         data-bs-target="#modal_info{{ concert.id }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-info-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                        </svg>
+                    </div>
+                    {#                            edit#}
+                    <div class="btn px-1 px-md-2" data-bs-toggle="modal"
+                         data-bs-target="#modal_edit{{ concert.id }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-pencil-square" viewBox="0 0 16 16">
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                            <path fill-rule="evenodd"
+                                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                        </svg>
+                    </div>
+                    {#                            delete#}
+                    <div class="btn px-1 px-md-2" data-bs-toggle="modal"
+                         data-bs-target="#modal_delete{{ concert.id }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-trash3" viewBox="0 0 16 16">
+                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                        </svg>
+                    </div>
+                    {#                            modal for delete confirming#}
+                    <div class="modal fade" id="modal_delete{{ concert.id }}" tabindex="-1"
+                         aria-labelledby="modalLabel{{ concert.id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <p class="modal-title bold" id="modalLabel{{ concert.id }}">确认</p>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    确定删除该演出吗?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                        取消
+                                    </button>
+                                    <button type="button" class="btn btn-danger delete-btn"
+                                            data-id="{{ concert.id }}"><a class="notdeca"
+                                                                          href="{{ url_for('delete_concert',id_value=concert.id) }}">删除</a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+    <div class="d-flex justify-content-end align-items-center">
+        <div class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modaladd">添加演出</div>
+        <nav class="mt-3" aria-label="Page navigation example">
+            <ul class="pagination justify-content-end py-3 px-5">
+                <li class="page-item {% if page_num==1 %}disabled{% endif %}">
+                    <a class="btn page-link" href="{{ url_for('admin_show',page_num=page_num-1) }}"
+                       data-index="{{ page_num-1 }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                {% for i in range(1,1+page_num_total) %}
+                    <li class="page-item"><a class="btn page-link {% if i==page_num %}active{% endif %}"
+                                             href="{{ url_for('admin_show',page_num=i) }}"
+                                             data-index="{{ i }}">{{ i }}</a>
+                    </li>
+                {% endfor %}
+                <li class="page-item">
+                    <a class="btn page-link {% if page_num==page_num_total %}disabled{% endif %}"
+                       href="{{ url_for('admin_show',page_num=1+page_num) }}"
+                       data-index="{{ 1+page_num }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</section>
+{% for concert in concerts %}
+    <div class="modal fade" id="modal_info{{ concert.id }}" tabindex="-1"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="FormModalLabel">演出信息：</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <p class="col-form-label cb">演出名称:</p>
+                        <p>{{ concert.name }}</p>
+                    </div>
+
+                    <div class="mb-3">
+                        <p class="col-form-label cb">演出时间:</p>
+                        {% if concert.duration==1 %}
+                            <p>{{ concert.start_time }}</p>
+                        {% else %}
+                            <p>{{ concert.start_time }}至{{ concert.end_time }}</p>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <p class="col-form-label cb">演出价位:</p>
+                        <p>{{ concert.start_price }}-{{ concert.end_price }}</p>
+                    </div>
+
+                    <div class="mb-3">
+                        <p class="col-form-label cb">剩余库存:</p>
+                        <p>{{ concert.stock }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{#edit modal#}
+{% for concert in concerts %}
+    <div class="modal fade" id="modal_edit{{ concert.id }}" tabindex="-1"
+         aria-hidden="true">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="FormModalLabel">编辑演出:</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editform{{ concert.id }}" method="POST"
+                          action="/edit_concert/{{ concert.id }}">
+
+                        <div class="mb-3">
+                            <label for="name{{ concert.id }}" class="col-form-label">演出名称:</label>
+                            <input value="{{ concert.name }}" type="text" class="form-control"
+                                   id="name{{ concert.id }}"
+                                   name="name" maxlength="15"
+                                   required="required">
+                        </div>
+                        <div class="mb-3">
+                            <label for="stock" class="col-form-label">票务总数:</label>
+                            <input type="text" value="{{ concert.stock }}" class="form-control" id="name" name="stock" maxlength="15"
+                                   required="required">
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label for="start_price{{ concert.id }}" class="col-form-label">价格区间</label>
+                            <input value="{{ concert.start_price }}" maxlength="10" type="text" class="col form-control"
+                                   id="start_price{{ concert.id }}"
+                                   name="start_price"
+                                   required="required">
+                            <p class="col justify-content-center pt-1">至</p>
+                            <input value="{{ concert.end_price }}" maxlength="10" type="text" class="form-control col"
+                                   id="end_price{{ concert.id }}"
+                                   name="end_price"
+                                   required="required">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="start_time{{ concert.id }}" class="form-label">开始时间:</label>
+                            <input value="{{ concert.start_time.strftime('%Y-%m-%d') }}" min="1900-01-01"
+                                   max="2100-12-31" type="date" id="date{{ concert.id }}" class="form-control"
+                                   name="start_time" required="required">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="end_time{{ concert.id }}" class="form-label">结束时间:</label>
+                            <input value="{{ concert.end_time.strftime('%Y-%m-%d') }}" min="1900-01-01"
+                                   max="2100-12-31" type="date" id="date{{ concert.id }}" class="form-control"
+                                   name="end_time" required="required">
+                        </div>
+                        <input type="hidden" name="page_num" value="{{ page_num }}">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消
+                            </button>
+                            <button type="submit" class="btn btn-warning" id="send_msg">编辑</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endfor %}
+<div class="modal fade" id="modaladd" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="FormModalLabel">添加演出:</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="addform" method="POST"
+                      action="/add_concert">
+                    <div class="mb-3">
+                        <label for="name" class="col-form-label">演出名称:</label>
+                        <input type="text" class="form-control" id="name" name="name" maxlength="15"
+                               required="required">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="location" class="col-form-label">演出地点:</label>
+                        <input type="text" class="form-control" id="name" name="location" maxlength="15"
+                               required="required">
+                    </div>
+                    <div class="mb-3">
+                        <label for="stock" class="col-form-label">票务总数:</label>
+                        <input type="text" class="form-control" id="name" name="stock" maxlength="15"
+                               required="required">
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="start_price" class="col-form-label">价格区间</label>
+                        <input value="" maxlength="10" type="text" class="col form-control"
+                               id="start_price"
+                               name="start_price"
+                               required="required">
+                        <p class="col justify-content-center pt-1">至</p>
+                        <input value="" maxlength="10" type="text" class="form-control col"
+                               id="end_price"
+                               name="end_price"
+                               required="required">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="start_time" class="form-label">开始时间:</label>
+                        <input value="" min="1900-01-01"
+                               max="2100-12-31" type="date" id="date" class="form-control"
+                               name="start_time" required="required">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="end_time" class="form-label">结束时间:</label>
+                        <input value="" min="1900-01-01"
+                               max="2100-12-31" type="date" id="date" class="form-control"
+                               name="end_time" required="required">
+                    </div>
+                    <div class="mb-3">
+                        <label for="city" class="form-label">城市:</label>
+                        <select class=" form-select day-select form-select-sm w-50" name="city"
+                                aria-label="Default select example">
+                            <option value="0" selected>选择城市</option>
+                            <option value="北京">
+                                北京
+                            </option>
+                            <option value="上海">
+                                上海
+                            </option>
+                            <option value="成都">
+                                成都
+                            </option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="type" class="form-label">类型:</label>
+                        <select class=" form-select day-select form-select-sm w-50" name="type"
+                                aria-label="Default select example">
+                            <option value="0" selected>类型</option>
+                            <option value="演唱会">
+                                演唱会
+                            </option>
+                            <option value="歌剧话剧">
+                                歌剧话剧
+                            </option>
+                            <option value="体育">
+                                体育
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-warning" id="send_msg">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="../../static/js/bootstrap.bundle.min.js"></script>
+<script src="../../static/js/jquery-1.12.4.min.js"></script>
+<script src="../../static/js/script.js"></script>
+</body>
+</html>

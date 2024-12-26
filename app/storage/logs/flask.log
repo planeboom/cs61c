@@ -1,0 +1,167 @@
+2024-12-26 11:38:27,438 - app - INFO - user 1 login
+2024-12-26 11:43:00,780 - app - ERROR - user 1 failed to login
+2024-12-26 11:43:47,124 - app - ERROR - user 1 failed to login
+2024-12-26 11:44:14,321 - app - ERROR - user 1 failed to login
+2024-12-26 11:46:16,955 - app - ERROR - Exception on /login [POST]
+Traceback (most recent call last):
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\zyh\Desktop\WEB\flaskProject\app\views.py", line 240, in login
+    app.logger.error(f"user {user.id} failed to login")
+AttributeError: 'NoneType' object has no attribute 'id'
+2024-12-26 11:46:36,624 - app - ERROR - user failed to login
+2024-12-26 11:47:14,825 - app - ERROR - user failed to login
+2024-12-26 11:47:33,232 - app - ERROR - user failed to login
+2024-12-26 11:48:23,028 - app - ERROR - user failed to login
+2024-12-26 11:48:55,069 - app - ERROR - user failed to login
+2024-12-26 11:49:05,666 - app - INFO - user 1 login
+2024-12-26 12:15:45,677 - app - ERROR - Exception on /detail_base/5 [GET]
+Traceback (most recent call last):
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\zyh\Desktop\WEB\flaskProject\app\views.py", line 295, in detail_base
+    concerts[0].score+=1
+TypeError: 'CursorResult' object is not subscriptable
+2024-12-26 12:15:59,990 - app - ERROR - Exception on /detail_base/5 [GET]
+Traceback (most recent call last):
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\zyh\Desktop\WEB\flaskProject\app\views.py", line 312, in detail_base
+    concerts[0].score+=1
+TypeError: 'CursorResult' object is not subscriptable
+2024-12-26 12:16:19,845 - app - ERROR - Exception on /detail_base/5 [GET]
+Traceback (most recent call last):
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\zyh\Desktop\WEB\flaskProject\app\views.py", line 312, in detail_base
+    concert_list[0].score+=1
+AttributeError: 'dict' object has no attribute 'score'
+2024-12-26 13:19:18,025 - app - ERROR - Exception on /detail_base/5 [GET]
+Traceback (most recent call last):
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\zyh\Desktop\WEB\flaskProject\app\views.py", line 312, in detail_base
+    concerts.first().score+=1
+AttributeError: 'NoneType' object has no attribute 'score'
+2024-12-26 13:20:12,627 - app - ERROR - Exception on /detail_base/5 [GET]
+Traceback (most recent call last):
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\zyh\Desktop\WEB\flaskProject\app\views.py", line 313, in detail_base
+    concert.score+=1
+AttributeError: 'NoneType' object has no attribute 'score'
+2024-12-26 13:20:22,875 - app - ERROR - Exception on /detail_base/5 [GET]
+Traceback (most recent call last):
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\zyh\Desktop\WEB\flaskProject\app\views.py", line 313, in detail_base
+    concert.score+=1
+AttributeError: 'NoneType' object has no attribute 'score'
+2024-12-26 13:20:31,384 - app - ERROR - Exception on /detail_base/5 [GET]
+Traceback (most recent call last):
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\zyh\Desktop\WEB\flaskProject\app\views.py", line 313, in detail_base
+    concert.score+=1
+AttributeError: 'NoneType' object has no attribute 'score'
+2024-12-26 13:21:25,007 - app - ERROR - Exception on /detail_base/5 [GET]
+Traceback (most recent call last):
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\zyh\Desktop\WEB\flaskProject\app\views.py", line 313, in detail_base
+    concert.score+=1
+AttributeError: 'NoneType' object has no attribute 'score'
+2024-12-26 13:21:27,740 - app - ERROR - Exception on /detail_base/5 [GET]
+Traceback (most recent call last):
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\zyh\Desktop\WEB\flaskProject\app\views.py", line 313, in detail_base
+    concert.score+=1
+AttributeError: 'NoneType' object has no attribute 'score'
+2024-12-26 17:42:18,346 - app - ERROR - user failed to login
+2024-12-26 17:45:36,444 - app - ERROR - Exception on /submit_sign_up [GET]
+Traceback (most recent call last):
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\zyh\Desktop\WEB\flaskProject\app\views.py", line 231, in submit_sign_up
+    hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
+AttributeError: 'NoneType' object has no attribute 'encode'
+2024-12-26 17:45:55,796 - app - ERROR - Exception on /submit_sign_up [GET]
+Traceback (most recent call last):
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zyh\.conda\envs\flask\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\zyh\Desktop\WEB\flaskProject\app\views.py", line 231, in submit_sign_up
+    hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
+AttributeError: 'NoneType' object has no attribute 'encode'

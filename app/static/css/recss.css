@@ -1,0 +1,609 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+/* Font credits: "Oswald" font by Google Fonts (https://fonts.google.com)
+         License: Open Source, free for personal and commercial use. */
+@font-face {
+    font-family: 'Oswald';
+    src: url(../font/Oswald-Regular.ttf);
+}
+
+/* Font credits: "Cabin" font by Google Fonts (https://fonts.google.com)
+         License: Open Source, free for personal and commercial use. */
+
+@font-face {
+    font-family: 'Cabin';
+    src: url(../font/Cabin-Regular.ttf);
+}
+
+/* Font credits: "Young Serif" font by Google Fonts (https://fonts.google.com)
+         License: Open Source, free for personal and commercial use. */
+@font-face {
+    font-family: 'Young Serif';
+    src: url(../font/YoungSerif-Regular.ttf);
+}
+
+/* Font credits: "Noto Sans" font by Google Fonts (https://fonts.google.com)
+         License: Open Source, free for personal and commercial use. */
+@font-face {
+    font-family: 'Noto Sans';
+    src: url(../font/NotoSans-Medium.ttf);
+}
+
+.i-logo {
+    width: 92px;
+    height: auto;
+    margin-top: 15px;
+    float: left;
+}
+
+
+.h_10 {
+    height: 620px;
+}
+
+.h_8 {
+    height: 530px;
+}
+
+.h_5 {
+    height: 380px;
+}
+
+.center {
+    align-items: center;
+    justify-content: center;
+}
+
+
+.nav-link {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.collape_btn {
+    font-family: 'Cabin', sans-serif;
+}
+
+.ns {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.ys {
+    font-family: 'Young Serif', sans-serif;
+}
+
+.cb {
+    font-family: 'Cabin', sans-serif;
+    font-size: 18px;
+}
+
+.pgray {
+    color: #6a737d;
+}
+
+.courseNames {
+    font-family: 'Cabin', sans-serif;
+}
+
+.os {
+    font-family: 'Oswald', sans-serif;
+}
+
+/*
+    Image credits: from Freepik (https://www.freepik.com)
+    License: Free for personal and commercial use, with attribution required.
+*/
+.card_title {
+    color: #111;
+    font-size: 25px;
+}
+
+.background_order {
+    background-image: url('../image/background1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+
+.container_order {
+    background-color: white;
+    margin-top: 100px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+#sign_in {
+    background: url(../../static/image/bg-01.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+#sign_up {
+
+    background: url(../../static/image/test1.png);
+
+    background-size: contain;
+    background-position: center center;
+    background-attachment: fixed;
+    z-index: 99;
+}
+
+.welcome {
+    background: url(../../static/image/banner.jpg) no-repeat;
+    background-size: cover;
+    justify-content: center;
+    background-position: center center;
+    width: 100%;
+    z-index: 99;
+}
+
+.form-container {
+    background-color: white; /* 设置背景为白色 */
+    width: 50%; /* 设置宽度为屏幕的一半 */
+    border-radius: 8px; /* 添加圆角 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+    padding: 20px; /* 内边距 */
+}
+
+.welcome h2 {
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 70px;
+    font-weight: 700;
+    line-height: 70px;
+}
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+.cbutton {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.cbutton:hover {
+  background-color: #0056b3;
+}
+
+.order {
+    position: relative;
+    padding-right: 30px;
+}
+
+.notice-time {
+    color: #999;
+    font-size: 12px;
+    margin: 24px 0 9px;
+}
+
+.right_info {
+    width: 300px;
+    padding: 24px 15px;
+    background: #fafafa;
+    border: 1px solid #ebebeb;
+}
+
+.item-img {
+    float: left;
+    width: 120px;
+    height: 100%;
+}
+
+.fixed-size {
+    width: 150px; /* 固定宽度，例如 150 像素 */
+    height: auto; /* 高度自动调整，保持图片比例 */
+}
+
+.totol__price {
+    font-size: 21px;
+    color: #ff1268;
+}
+
+a.recommed_item {
+    display: flex; /* 与 div 的 display 保持一致 */
+    height: 160px; /* 与 div 高度一致 */
+    margin-bottom: 30px; /* 与 div 间距一致 */
+    cursor: pointer; /* 保留手型指针 */
+    text-decoration: none; /* 去掉下划线 */
+    color: inherit; /* 继承父元素的文本颜色 */
+}
+
+.notdeca {
+    cursor: pointer; /* 保留手型指针 */
+    text-decoration: none; /* 去掉下划线 */
+    color: inherit; /* 继承父元素的文本颜色 */
+}
+
+img {
+    width: 100%; /* 默认占满父容器宽度 */
+    max-width: 300px; /* 限制图片最大宽度 */
+    min-width: 120px; /* 设置图片最小宽度 */
+    height: auto; /* 保持宽高比例 */
+}
+
+.recommed_item {
+    display: flex;
+    height: 160px;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+.subinfo {
+    font-size: 16px;
+    color: #4a4a4a;
+}
+
+.subtitle {
+    font-size: 18px;
+}
+
+.title {
+    font-size: 20px;
+    color: #000;
+    line-height: 28px;
+}
+
+.intro {
+    font-size: 25px;
+}
+
+.info {
+    position: relative;
+    font-size: 14px;
+    color: #4a4a4a;
+    zoom: 1;
+}
+
+.category__list {
+    flex: 1; /* 每个子元素占据相等宽度 */
+    display: block;
+    text-align: center; /* 文本居中对齐 */
+    text-decoration: none; /* 去除下划线 */
+}
+
+.factor-title {
+    line-height: 26px;
+    color: #968788;
+    text-align: right;
+
+}
+
+.choice-item {
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    color: #333;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.factor-content-item-active, .factor-content-item:hover {
+    background-color: #ed0b75;
+    color: #fff;
+}
+
+.factor-selected-city {
+    display: inline-block;
+    text-align: center;
+    line-height: 26px;
+    color: #fff;
+    background-color: #ed0b75;
+}
+
+.header {
+    position: relative;
+    padding: 40px 0 30px;
+    min-height: 360px;
+
+    .search-factor {
+        padding: 0 24px;
+        border: 1px solid #e9e9e9;
+    }
+
+    .cont {
+        padding-left: 330px;
+        font-size: 22px;
+        color: #000;
+    }
+}
+
+.right_info_icon {
+    color: #ff5593;
+}
+
+.announce_reason {
+    font-size: 12px;
+    color: gray;
+}
+
+.tip {
+    display: inline-block;
+    width: 60px;
+    height: 24px;
+    position: relative;
+    top: -3px;
+    text-align: center;
+    line-height: 24px;
+    background: -webkit-linear-gradient(135deg, #ff1268, #ff5593);
+    background: -moz-linear-gradient(135deg, #ff1268 0, #ff5593 100%);
+    background: linear-gradient(-45deg, #ff1268, #ff5593);
+    z-index: 10;
+    font-size: 14px;
+    color: #fff;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.image {
+    position: absolute;
+    left: 30px;
+    top: 40px;
+    width: 270px;
+    height: 360px;
+}
+
+.category__list:hover .category__info {
+    color: #FF1268
+}
+
+.category__icon {
+    display: block;
+    width: 48px;
+    height: 48px;
+    margin: 0 auto;
+    background: url(../../static/image/icon.png) no-repeat;
+    background-size: 100% auto
+}
+
+.category__info {
+    font-size: 16px;
+    color: #111;
+    text-align: center
+}
+
+.category__icon__ych {
+    background-position: 0 0
+}
+
+.category__icon__gjhj {
+    background-position: 0 -64px
+}
+
+.category__icon__tyjj {
+    background-position: 0 -120px
+}
+
+.category__icon__qz {
+    background-position: 0 -180px
+}
+
+
+.category:after {
+    display: block;
+    clear: both;
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+    content: '.'
+}
+
+.category__icon__dm {
+    background-position: 0 -480px
+}
+
+.category__icon__lyzl {
+    background-position: 0 -540px
+}
+
+.category__info:hover {
+    color: #ff1268
+}
+
+.category {
+    display: flex; /* 使用 Flexbox 布局 */
+    justify-content: space-between; /* 让子元素均匀分布 */
+    align-items: center; /* 垂直居中对齐子元素 */
+    width: 100%; /* 容器宽度为 100% */
+    padding: 20px 0; /* 给容器添加上下内边距 */
+}
+
+.batch {
+    display: inline-block;
+
+    font-size: 1.25rem;
+    line-height: 1.5;
+    height: 100%;
+    vertical-align: middle;
+    padding: 0.4rem 0.125rem 0.375rem 0.75rem;
+}
+
+.container {
+    background-color: white;
+
+}
+
+@media (max-width: 1000px) {
+
+    .cb {
+        font-family: 'Cabin', sans-serif;
+        font-size: 15px;
+    }
+}
+
+.nav-item {
+    font-family: 'Oswald', sans-serif;
+    font-size: 24px;
+}
+
+
+@media (max-width: 800px) {
+    .nav-link {
+        font-size: 18px;
+    }
+
+    .cb {
+        font-family: 'Cabin', sans-serif;
+        font-size: 14px;
+    }
+}
+
+.log {
+    border-radius: 5px;
+}
+
+@media (max-width: 480px) {
+    .nav-link {
+        font-size: 13px;
+        padding: 0.25rem;
+    }
+
+    .nav-link.active {
+        border-left: 1px solid black;
+        border-right: 1px solid #ccc;
+        border-top: 1px solid #ccc;
+        border-bottom: none;
+    }
+
+    .nav-link:not(.active) {
+        border-bottom: 1px solid #ccc;
+        color: #949494
+    }
+
+}
+
+@media (max-width: 768px) {
+    .cb {
+        font-family: 'Cabin', sans-serif;
+        font-size: 14px;
+    }
+}
+
+
+.alert {
+    color: black;
+}
+
+.col {
+    display: flex;
+    align-items: center;
+}
+
+#about_me:hover {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, .4);
+    background: #9f00ff;
+    border: 1px solid #9f00ff;
+}
+
+.nav-item a:hover {
+    color: #d92cf9;
+}
+
+.nav-item button:hover {
+    color: #d92cf9;
+}
+
+.add_item:hover {
+    color: #d92cf9;
+}
+
+.nav-item svg:hover {
+    color: #d92cf9;
+}
+
+.navbar-brand:hover {
+    color: #9f00ff;
+
+}
+
+.flash_message-success {
+    background: #F5F5F5;
+}
+
+.flash_message-error {
+    background: #FFA500
+}
+
+.navbar {
+    height: 70px;
+}
+
+.navbar-brand {
+    font-size: 30px;
+    font-weight: 700;
+    color: blueviolet;
+}
+
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-nav {
+    margin-right: 0px;
+}
+
+#about_me {
+    background: #b636ff;
+    color: white;
+}
+
+/*@media (max-width: 1200px) {*/
+/*    .navbar-brand {*/
+/*        position: absolute;*/
+/*        left: 50%;*/
+/*        transform: translateX(-60%) translateY(-30%);*/
+/*    }*/
+/*}*/
+
+.bold {
+    font-weight: 700;
+}
+
+
+.card {
+    border-width: 1px;
+}
+
+
+.update-btn {
+    color: mediumpurple;
+}
+
+.custom-modal .modal-content {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.in {
+    opacity: 0;
+}
+
+.rubber {
+    opacity: 0;
+}
+
+.jello {
+    opacity: 0;
+}

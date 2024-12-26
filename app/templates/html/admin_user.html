@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/css/recss.css">
+    <link rel="stylesheet" href="../../static/css/animate.css">
+    <link rel="stylesheet" href="../../static/css/animate.min.css">
+</head>
+<body class="container background_order">
+
+<section>
+    {# 1.navbar #}
+    <div class="container">
+        <nav class="navbar navbar-expand-md bg-white navbar-light fixed-top">
+            <h1><a href="/" class="navbar-brand ms-5" id="brand">猫团美眼</a></h1>
+            <div class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </div>
+            <div class="collapse navbar-collapse bg-white text-center" id="navmenu">
+                <ul class="navbar-nav gap-xl-2 d-flex align-items-center ms-auto me-auto">
+                    <li class="nav-item d-none py-1 user">
+                        <div class="btn btn-white user_button" type="button">
+                        </div>
+                    </li>
+
+                    <li class="nav-item py-1 log">
+                        <a href="{{ url_for('index') }}">
+                            <button class="btn page btn-lg btn-white" data-id="complete"
+                                    type="button">
+
+                                首页
+                            </button>
+                        </a>
+                    </li>
+                    <li class="nav-item py-1 log">
+                        <a href="{{ url_for('clas') }}">
+                            <button class="btn page btn-lg btn-white" data-id="incomplete"
+                                    type="button">
+
+                                分类
+                            </button>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item log d-flex text-nowrap ">
+                        <div class="d-flex" role="search">
+                            <input type="text" name="searchinfo" id="searchinfo" class="form-control me-2">
+                            <button class="btn searchbutton border" type="submit">search</button>
+                        </div>
+                    </li>
+                    <li class="nav-item py-1 log">
+                        {% if not session.get('username') %}
+                            <a href="{{ url_for("sign_in") }}">
+                                <button class="btn btn-lg btn-white" data-bs-toggle="modal" data-bs-target="#modaladd"
+                                        type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                              d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
+                                        <path fill-rule="evenodd"
+                                              d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                    </svg>
+                                    登录
+                                </button>
+                            </a>
+                        {% endif %}
+                    </li>
+                    <li class="nav-item py-1 log">
+                        {% if session.get('username') %}
+                            <div>
+                                <div class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                       aria-expanded="false">
+                                        {{ session.get('username') }}
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        {% if not session.get('admin') %}
+                                            <li><a class="dropdown-item" href="{{ url_for('user_order') }}">我的订单</a>
+                                            </li>
+                                            <li><a class="dropdown-item" href="{{ url_for('sign_out') }}">登出</a></li>
+                                        {% else %}
+                                            <li><a class="dropdown-item" href="{{ url_for('admin_show',page_num=1) }}">管理商品</a>
+                                            </li>
+                                            <li><a class="dropdown-item" href="{{ url_for('admin_user',page_num=1) }}">管理用户</a>
+                                            </li>
+                                            <li><a class="dropdown-item" href="{{ url_for('sign_out') }}">登出</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                        {% else %}
+                            <a href="{{ url_for("sign_up") }}">
+                                <button class="btn btn-lg btn-white" data-bs-toggle="modal" data-bs-target="#modaladd"
+                                        type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-signpost" viewBox="0 0 16 16">
+                                        <path
+                                                d="M7 1.414V4H2a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h5v6h2v-6h3.532a1 1 0 0 0 .768-.36l1.933-2.32a.5.5 0 0 0 0-.64L13.3 4.36a1 1 0 0 0-.768-.36H9V1.414a1 1 0 0 0-2 0zM12.532 5l1.666 2-1.666 2H2V5z"/>
+                                    </svg>
+                                    注册
+                                </button>
+                            </a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</section>
+
+
+
+<section class="pt-5 container_order">
+    <h1 class="m-2">用户管理</h1>
+    <div class="mt-3 row align-items-center  border-bottom">
+        <div class=" col">
+            <h1 class="bold cb">用户名称</h1>
+        </div>
+        <div class="col">
+            <h1 class="bold cb">邮箱</h1>
+        </div>
+        <div class="col ">
+            <h1 class="bold cb">手机号</h1>
+        </div>
+        <div class="col">
+            <h1 class="cb bold">操作</h1></div>
+
+    </div>
+    <div class="h_8">
+        {% for user in users %}
+            <div class="row py-1 py-md-2 align-items-center border-bottom">
+                <div class="col text-center cb">
+                    {{ user.username }}</div>
+                <div class="col ns">
+                    {{ user.email }}</div>
+
+                <div class="col cb">
+                    {{ user.phone }}</div>
+                <div class="col">
+                    {#                            information#}
+                    <div class="btn px-1 px-md-2" data-bs-toggle="modal"
+                         data-bs-target="#modal_info{{ user.id }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-info-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                        </svg>
+                    </div>
+                    {#                            edit#}
+
+                    {#                            delete#}
+                    <div class="btn px-1 px-md-2" data-bs-toggle="modal"
+                         data-bs-target="#modal_delete{{ user.id }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-trash3" viewBox="0 0 16 16">
+                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                        </svg>
+                    </div>
+                    {#                            modal for delete confirming#}
+                    <div class="modal fade" id="modal_delete{{ user.id }}" tabindex="-1"
+                         aria-labelledby="modalLabel{{ user.id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <p class="modal-title bold" id="modalLabel{{ user.id }}">确认</p>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    确定删除该用户账号吗?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                        取消
+                                    </button>
+                                    <button type="button" class="btn btn-danger delete-btn"
+                                            data-id="{{ user.id }}"><a class="notdeca"
+                                                                       href="{{ url_for('delete_user',user_id=user.id) }}">删除</a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+
+  <nav class="mt-3" aria-label="Page navigation example">
+        <ul class="pagination justify-content-end py-3 px-5">
+            <li class="page-item {% if page_num==1 %}disabled{% endif %}">
+                <a class="btn page-link" href="{{ url_for('admin_user',page_num=page_num-1) }}"
+                   data-index="{{ page_num-1 }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {% for i in range(1,1+page_num_total) %}
+                <li class="page-item"><a class="btn page-link {% if i==page_num %}active{% endif %}"
+                                         href="{{ url_for('admin_user',page_num=i) }}" data-index="{{ i }}">{{ i }}</a>
+                </li>
+            {% endfor %}
+            <li class="page-item">
+                <a class="btn page-link {% if page_num==page_num_total %}disabled{% endif %}"
+                   href="{{ url_for('admin_user',page_num=1+page_num) }}"
+                   data-index="{{ 1+page_num }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</section>
+{% for user in users %}
+    <div class="modal fade" id="modal_info{{ user.id }}" tabindex="-1"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="FormModalLabel">Assessment information:</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <p class="col-form-label cb">Assessment name:</p>
+                        <p>{{ user.username }}</p>
+                    </div>
+
+                    <div class="mb-3">
+                        <p class="col-form-label cb">Email:</p>
+                        <p>{{ user.email }}</p>
+                    </div>
+
+                    <div class="mb-3">
+                        <p class="col-form-label cb">Phone number:</p>
+                        <p>{{ user.phone }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+<script src="../../static/js/bootstrap.bundle.min.js"></script>
+<script src="../../static/js/jquery-1.12.4.min.js"></script>
+<script src="../../static/js/script.js"></script>
+</body>
+</html>

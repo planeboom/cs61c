@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<section>
+    {# 1.navbar #}
+    <div class="container">
+        <nav class="navbar navbar-expand-md bg-white navbar-light fixed-top">
+            <h1><a href="/" class="navbar-brand ms-5" id="brand">猫团美眼</a></h1>
+            <div class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </div>
+            <div class="collapse navbar-collapse bg-white text-center" id="navmenu">
+                <ul class="navbar-nav gap-xl-2 d-flex align-items-center ms-auto me-auto">
+                    <li class="nav-item d-none py-1 user">
+                        <div class="btn btn-white user_button" type="button">
+                        </div>
+                    </li>
+
+                    <li class="nav-item py-1 log">
+                        <a href="{{ url_for('index') }}">
+                            <button class="btn page btn-lg btn-white" data-id="complete"
+                                    type="button">
+
+                                首页
+                            </button>
+                        </a>
+                    </li>
+                    <li class="nav-item py-1 log">
+                        <a href="{{ url_for('clas') }}">
+                            <button class="btn page btn-lg btn-white" data-id="incomplete"
+                                    type="button">
+
+                                分类
+                            </button>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item log d-flex text-nowrap ">
+                        <form class="d-flex" role="search">
+                            <input class="form-control me-2" type="search" placeholder="search" aria-label="search">
+                            <button class="btn border" type="submit">search</button>
+                        </form>
+                    </li>
+                    <li class="nav-item py-1 log">
+                        {% if not session.get('username') %}
+                            <a href="{{ url_for("sign_in") }}">
+                                <button class="btn btn-lg btn-white" data-bs-toggle="modal" data-bs-target="#modaladd"
+                                        type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                              d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
+                                        <path fill-rule="evenodd"
+                                              d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                    </svg>
+                                    登录
+                                </button>
+                            </a>
+                        {% endif %}
+                    </li>
+                    <li class="nav-item py-1 log">
+                        {% if session.get('username') %}
+                            <div>
+                                <div class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                       aria-expanded="false">
+                                        {{ session.get('username') }}
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{{ url_for('user_order') }}">我的订单</a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="{{ url_for('user_info') }}">个人信息</a></li>
+                                        <li><a class="dropdown-item" href="{{ url_for('sign_out') }}">登出</a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                        {% else %}
+                            <a href="{{ url_for("sign_up") }}">
+                                <button class="btn btn-lg btn-white" data-bs-toggle="modal" data-bs-target="#modaladd"
+                                        type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-signpost" viewBox="0 0 16 16">
+                                        <path
+                                                d="M7 1.414V4H2a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h5v6h2v-6h3.532a1 1 0 0 0 .768-.36l1.933-2.32a.5.5 0 0 0 0-.64L13.3 4.36a1 1 0 0 0-.768-.36H9V1.414a1 1 0 0 0-2 0zM12.532 5l1.666 2-1.666 2H2V5z"/>
+                                    </svg>
+                                    注册
+                                </button>
+                            </a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</section>
+</body>
+</html>

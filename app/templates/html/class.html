@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/css/recss.css">
+    <link rel="stylesheet" href="../../static/css/animate.css">
+    <link rel="stylesheet" href="../../static/css/animate.min.css">
+</head>
+<body class="container">
+
+<section>
+    {# 1.navbar #}
+    <div class="container">
+        <nav class="navbar navbar-expand-md bg-white navbar-light fixed-top">
+            <h1><a href="/" class="navbar-brand ms-5" id="brand">猫团美眼</a></h1>
+            <div class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </div>
+            <div class="collapse navbar-collapse bg-white text-center" id="navmenu">
+                <ul class="navbar-nav gap-xl-2 d-flex align-items-center ms-auto me-auto">
+                    <li class="nav-item d-none py-1 user">
+                        <div class="btn btn-white user_button" type="button">
+                        </div>
+                    </li>
+
+                    <li class="nav-item py-1 log">
+                        <a href="{{ url_for('index') }}">
+                            <button class="btn page btn-lg btn-white" data-id="complete"
+                                    type="button">
+
+                                首页
+                            </button>
+                        </a>
+                    </li>
+                    <li class="nav-item py-1 log">
+                        <a href="{{ url_for('clas') }}">
+                            <button class="btn page btn-lg btn-white" data-id="incomplete"
+                                    type="button">
+
+                                分类
+                            </button>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item log d-flex text-nowrap ">
+                        <div class="d-flex" role="search">
+                            <input type="text" name="searchinfo" id="searchinfo" class="form-control me-2">
+                            <button class="btn searchbutton border" type="submit">search</button>
+                        </div>
+                    </li>
+                    <li class="nav-item py-1 log">
+                        {% if not session.get('username') %}
+                            <a href="{{ url_for("sign_in") }}">
+                                <button class="btn btn-lg btn-white" data-bs-toggle="modal" data-bs-target="#modaladd"
+                                        type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                              d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
+                                        <path fill-rule="evenodd"
+                                              d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                    </svg>
+                                    登录
+                                </button>
+                            </a>
+                        {% endif %}
+                    </li>
+                    <li class="nav-item py-1 log">
+                        {% if session.get('username') %}
+                            <div>
+                                <div class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                       aria-expanded="false">
+                                        {{ session.get('username') }}
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        {% if not session.get('admin') %}
+                                            <li><a class="dropdown-item" href="{{ url_for('user_order') }}">我的订单</a>
+                                            </li>
+                                            <li><a class="dropdown-item" href="{{ url_for('sign_out') }}">登出</a></li>
+                                        {% else %}
+                                            <li><a class="dropdown-item" href="{{ url_for('admin_show',page_num=1) }}">管理商品</a>
+                                            </li>
+                                            <li><a class="dropdown-item" href="{{ url_for('admin_user',page_num=1) }}">管理用户</a>
+                                            </li>
+                                            <li><a class="dropdown-item" href="{{ url_for('sign_out') }}">登出</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                        {% else %}
+                            <a href="{{ url_for("sign_up") }}">
+                                <button class="btn btn-lg btn-white" data-bs-toggle="modal" data-bs-target="#modaladd"
+                                        type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-signpost" viewBox="0 0 16 16">
+                                        <path
+                                                d="M7 1.414V4H2a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h5v6h2v-6h3.532a1 1 0 0 0 .768-.36l1.933-2.32a.5.5 0 0 0 0-.64L13.3 4.36a1 1 0 0 0-.768-.36H9V1.414a1 1 0 0 0-2 0zM12.532 5l1.666 2-1.666 2H2V5z"/>
+                                    </svg>
+                                    注册
+                                </button>
+                            </a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</section>
+
+
+<div class="cookie-banner">
+    <div class="cookie-content ">
+        <p>我们使用 Cookie 来改善您的体验，分析流量，并根据您的兴趣提供个性化内容。</p>
+        <button class="cbutton" id="accept-cookies">同意所有 Cookie</button>
+        <button class="cbutton" id="refuse-cookies">拒绝Cookie</button>
+    </div>
+</div>
+
+
+
+
+<section class="mt-5 pt-4 ">
+    <div class="factor-item d-flex py-2">
+        <span class="factor-title">
+        城 市：
+        </span>
+        <div class="factor-content ">
+            <div class="factor-content-main">
+                <div class="factor-content">
+                    <span class="choice-item city-choice px-2 factor-content-item-default factor-content-item-active" data-city="all">全部</span>
+                    <span class="choice-item city-choice px-2" data-city="上海">
+                    上海
+                </span>
+                    <span class="choice-item city-choice px-2 " data-city="北京">
+                    北京
+                </span>
+                    <span class="choice-item city-choice px-2" data-city="成都">
+                    成都
+                </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="factor-item d-flex">
+        <span class="factor-title">
+        分 类：
+        </span>
+        <div class="factor-content">
+            <div class="factor-content-main">
+                <div class="factor-content">
+                    <span class="choice-item class-choice px-2 factor-content-item-default {% if cur_class=="all"%} factor-content-item-active{% endif %}" data-class="all">全部</span>
+                    <span class="choice-item  class-choice px-2  {% if cur_class=="演唱会"%} factor-content-item-active{% endif %}" data-class="演唱会">
+                    演唱会
+                </span><span class="choice-item class-choice px-2  {% if cur_class=="歌剧话剧"%} factor-content-item-active{% endif %}" data-class="歌剧话剧">
+                    歌剧话剧
+                </span><span class="choice-item class-choice px-2  {% if cur_class=="体育"%} factor-content-item-active{% endif %}" data-class="体育">
+                    体育
+                </span></div> <!----></div>
+        </div>
+    </div>
+
+</section>
+
+
+<section class="container">
+    {#option line#}
+    <ul class="nav  container my-3 nav-tabs">
+        <li class="nav-item">
+            <div class="btn nav-link sort_link {% if sort_by=='name' %}active {% endif %}" id="sort-by-date" data-sort-by="name"
+                 aria-current="page">名称排序
+            </div>
+        </li>
+        <li class="nav-item">
+            <div class="btn nav-link sort_link {% if sort_by=='date' %}active {% endif %}" id="sort-by-name" data-sort-by="start_time">
+                最近开场
+            </div>
+        </li>
+    </ul>
+
+
+    <div class="container d-flex py-2" >
+        <div class="list-container col-md-8 col-12 " id="todos-container">
+            {% if concerts %}
+                {% for concert in concerts %}
+                    <a class="notdeca" href="{{ url_for("detail_base",id_value=concert.id) }}">
+                    <div class="row my-2">
+                        <div class="col-4">
+                            <img class="w-75" src="../../static/image/cover/{{ concert.link }}">
+                        </div>
+                        <div class="col-7 text-start">
+                            <div class="title py-1">
+                                {{ concert.name }}
+                            </div>
+
+                            <div class="info py-1">
+                                {{ concert.location }}
+                            </div>
+
+                            <div class="info py-1">
+                                {{ concert.start_time }}
+                            </div>
+
+                            <div class="totol__price mt-3">
+                                {{ concert.start_price }}-{{ concert.end_price }}元 售票中
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                {% endfor %}
+                 {% for i in range(3-cnt) %}
+                    <div class="row opacity-0 my-2">
+                        <div class="col-4">
+                            <img class="w-75" src="../../static/image/cover/{{ concerts[0].link }}">
+                        </div>
+                        <div class="col-7 text-start">
+                            <div class="title">
+                                {{ concerts[0].name }}
+                            </div>
+
+                            <div class="info">
+                                {{ concerts[0].location }}
+                            </div>
+
+                            <div class="info">
+                                {{ concerts[0].start_time }}
+                            </div>
+
+                            <div class="totol__price">
+                                {{ concerts[0].start_price }}-{{ concerts[0].end_price }}元 售票中
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center py-3 px-5">
+                        <li class="page-item {% if page_num==1 %}disabled{% endif %}">
+                            <a class="btn page-link" data-index="{{ page_num-1 }}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        {% for i in range(1,1+page_num_total) %}
+                            <li class="page-item"><a class="btn page-link {% if i==page_num %}active{% endif %}"
+                                                     data-index="{{ i }}">{{ i }}</a></li>
+                        {% endfor %}
+                        <li class="page-item">
+                            <a class="btn page-link  {% if page_num==page_num_total %}disabled{% endif %}"
+                               data-index="{{ 1+page_num }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            {% else %}
+                <div class="row justify-content-start">
+                    <div class="col-12 col-md-6">
+                        <h3 class="text-muted">没有找到符合条件的商品。您可以减少筛选条件重新搜索!</h3>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        <div class="info_and_recommend d-none d-md-block col-4">
+
+            <div class="recommend mt-5">
+                <div class="title">
+                    为你推荐
+                </div>
+
+
+
+                {% for concert in top_concerts %}
+                    <div class="recommed_item">
+                 <a class="recommed_item " href="{{ url_for('detail_base', id_value=concert.id) }}">
+                    <img class="item-img" src="../../static/image/cover/{{ concert.link }}">
+                    <div class="recommed_word">
+                        <div class="m-2 announce_name">
+                            {{ concert.name }}
+                        </div>
+                        <div class="m-2 announce_reason d-none d-md-block">
+                            {{ concert.location }}
+                        </div>
+                        <div class="m-2 announce_reason d-none d-md-block">
+                            {{ concert.start_time }}
+                        </div>
+                    </div>
+
+                </a>
+
+                    </div>
+                {% endfor %}
+{#                    <img class="item-img" src="../../static/image/cover/zky.avif">#}
+{#                    <div class="recommed_word">#}
+{#                        <div class="m-2 announce_name">#}
+{#                            【北京】周柯宇“二十季”出道五周年粉丝见面会#}
+{#                        </div>#}
+{#                        <div class="m-2 announce_reason">#}
+{#                            北京市 | 京东英特尔电子竞技中心#}
+{#                        </div>#}
+{#                        <div class="m-2 announce_reason">#}
+{#                            2024.12.14 周六 18:00#}
+{#                        </div>#}
+{#                    </div>#}
+
+
+
+            </div>
+        </div>
+        {#        page navigation#}
+    </div>
+
+
+</section>
+
+<script src="../../static/js/bootstrap.bundle.min.js"></script>
+<script src="../../static/js/jquery-1.12.4.min.js"></script>
+<script src="../../static/js/script.js"></script>
+</body>
+</html>

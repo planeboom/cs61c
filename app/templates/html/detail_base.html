@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/css/recss.css">
+    <link rel="stylesheet" href="../../static/css/animate.css">
+    <link rel="stylesheet" href="../../static/css/animate.min.css">
+</head>
+<body>
+<section>
+    {# 1.navbar #}
+    <div class="container">
+        <nav class="navbar navbar-expand-md bg-white navbar-light fixed-top">
+            <h1><a href="/" class="navbar-brand ms-5" id="brand">猫团美眼</a></h1>
+            <div class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </div>
+            <div class="collapse navbar-collapse bg-white text-center" id="navmenu">
+                <ul class="navbar-nav gap-xl-2 d-flex align-items-center ms-auto me-auto">
+                    <li class="nav-item d-none py-1 user">
+                        <div class="btn btn-white user_button" type="button">
+                        </div>
+                    </li>
+
+                    <li class="nav-item py-1 log">
+                        <a href="{{ url_for('index') }}">
+                            <button class="btn page btn-lg btn-white" data-id="complete"
+                                    type="button">
+
+                                首页
+                            </button>
+                        </a>
+                    </li>
+                    <li class="nav-item py-1 log">
+                        <a href="{{ url_for('clas') }}">
+                            <button class="btn page btn-lg btn-white" data-id="incomplete"
+                                    type="button">
+
+                                分类
+                            </button>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item log d-flex text-nowrap ">
+                        <div class="d-flex" role="search">
+                            <input type="text" name="searchinfo" id="searchinfo" class="form-control me-2">
+                            <button class="btn searchbutton border" type="submit">search</button>
+                        </div>
+                    </li>
+                    <li class="nav-item py-1 log">
+                        {% if not session.get('username') %}
+                            <a href="{{ url_for("sign_in") }}">
+                                <button class="btn btn-lg btn-white" data-bs-toggle="modal" data-bs-target="#modaladd"
+                                        type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                              d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
+                                        <path fill-rule="evenodd"
+                                              d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                    </svg>
+                                    登录
+                                </button>
+                            </a>
+                        {% endif %}
+                    </li>
+                    <li class="nav-item py-1 log">
+                        {% if session.get('username') %}
+                            <div>
+                                <div class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                       aria-expanded="false">
+                                        {{ session.get('username') }}
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        {% if not session.get('admin') %}
+                                            <li><a class="dropdown-item" href="{{ url_for('user_order') }}">我的订单</a>
+                                            </li>
+                                            <li><a class="dropdown-item" href="{{ url_for('sign_out') }}">登出</a></li>
+                                        {% else %}
+                                            <li><a class="dropdown-item" href="{{ url_for('admin_show',page_num=1) }}">管理商品</a>
+                                            </li>
+                                            <li><a class="dropdown-item" href="{{ url_for('admin_user',page_num=1) }}">管理用户</a>
+                                            </li>
+                                            <li><a class="dropdown-item" href="{{ url_for('sign_out') }}">登出</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                        {% else %}
+                            <a href="{{ url_for("sign_up") }}">
+                                <button class="btn btn-lg btn-white" data-bs-toggle="modal" data-bs-target="#modaladd"
+                                        type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-signpost" viewBox="0 0 16 16">
+                                        <path
+                                                d="M7 1.414V4H2a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h5v6h2v-6h3.532a1 1 0 0 0 .768-.36l1.933-2.32a.5.5 0 0 0 0-.64L13.3 4.36a1 1 0 0 0-.768-.36H9V1.414a1 1 0 0 0-2 0zM12.532 5l1.666 2-1.666 2H2V5z"/>
+                                    </svg>
+                                    注册
+                                </button>
+                            </a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</section>
+
+
+
+<div data-user-id="{{ session['user_id'] }}" data-concert-id="{{ concert.id }}" class="page_data">
+</div>
+
+<section class="container border-start border-end">
+    <div class="header d-flex">
+        <div>
+            <div class="cont mx-2">
+                <div class="image">
+                    <img class="image" src="../../static/image/cover/{{ concert.link }}">
+                </div>
+                <div class="order ms-3 mt-5">
+                    <div class="title">
+                        <span class="tip">总票代</span>
+                        <span>
+                    {{ concert.name }}
+                </span>
+                    </div>
+                    <div class="info">
+                        <div class="time subinfo py-2">
+                            时间：
+                            {% if concert.duration ==1 %}
+                                {{ concert.start_time }}
+                            {% else %}
+
+                                {{ concert.start_time }}-{{ concert.end_time }}
+                            {% endif %}
+                        </div>
+                        <div class="place">
+                            <div class="addr subinfo py-2">场馆：{{ concert.location }}</div>
+                        </div>
+                        <div class="mt-3 notice_time">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+                                 class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                            </svg>
+                            场次时间均为演出当地时间
+                        </div>
+                        <div class="changci mt-4 justify-content-around align-items-center d-flex">
+                            <div class="subtitle px-2">场次</div>
+                            <select class=" form-select day-select form-select-sm w-50" aria-label="Default select example">
+                                <option value="0" selected>选择场次</option>
+                                {% if concert.duration ==1 %}
+                                    <option value="{{ concert.start_time }}">
+                                        {{ concert.start_time }}
+                                    </option>
+                                {% else %}
+                                    <option value="{{ concert.start_time }}">
+                                        {{ concert.start_time }}
+                                    </option>
+                                    <option value="{{ concert.start_time }}">
+                                        {{ concert.end_time }}
+                                    </option>
+                                {% endif %}
+                            </select>
+
+                        </div>
+                        <div class="per_price mt-4 justify-content-around align-items-center d-flex">
+                            <div class="subtitle px-2">票档</div>
+                            <select class="form-select form-select-sm w-50 price-select"
+                                    aria-label="Default select example">
+                                <option value="0" selected>选择票档</option>
+                                {% if concert.start_price==100 %}
+                                    <option value="100">
+                                        100
+                                    </option>
+                                    <option value="288">
+                                        288
+                                    </option>
+                                {% elif concert.start_price==258 %}
+
+                                    <option value="258">
+                                        258
+                                    </option>
+                                    <option value="358">
+                                        358
+                                    </option>
+                                    <option value="588">
+                                        588
+                                    </option>
+                                    <option value="888">
+                                        888
+                                    </option>
+                                {% elif concert.start_price==380 %}
+
+                                    <option value="380">
+                                        380
+                                    </option>
+                                    <option value="680">
+                                        680
+                                    </option>
+                                    <option value="1380">
+                                        1380
+                                    </option>
+                                {% else %}
+
+                                    <option value="680">
+                                        680
+                                    </option>
+                                    <option value="880">
+                                        880
+                                    </option>
+                                    <option value="1680">
+                                        1680
+                                    </option>
+                                {% endif %}
+                            </select>
+
+                        </div>
+                        <div class="num mt-4 justify-content-around align-items-center d-flex">
+                            <div class="subtitle px-2">数量</div>
+                            <select class="form-select form-select-sm w-50 quantity-select"
+                                    aria-label="Default select example">
+                                <option value="0" selected>选择数量</option>
+                                <option value="1">
+                                    1张
+                                </option>
+                                <option value="2">
+                                    2张
+                                </option>
+
+                                <option value="3">
+                                    3张
+                                </option>
+
+                                <option value="4">
+                                    4张
+                                </option>
+                            </select>
+
+                        </div>
+
+                        <div class="price mt-4 mb-2 justify-content-around align-items-center d-flex">
+                            <div class="subtitle">合计支付</div>
+
+                            <span class="totol__price"><i>￥</i>0.00</span>
+                        </div>
+                        <div class="my-2 justify-content-center d-flex">
+                            <div class="btn w-75 btn-danger" id="payButton">立即支付</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="description mt-5 pt-5 px-2">
+                <div class="intro bold py-1 border-bottom">活动介绍</div>
+                <div class="description_detail py-2 px-5">
+                    {{ concert.description }}
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="info_and_recommend d-none d-sm-block px-1">
+            <div class="right_info mt-5">
+                <div class="announce m-3">
+                    <div class="announce_name">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi right_info_icon bi-x-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                        不支持退
+                    </div>
+                    <div class="announce_reason mt-1">
+                        票品为有价票券，非普通商品，其背后承载的文化服务具有时效性，稀缺性等特征，不支持退换。
+                    </div>
+                </div>
+                <div class="announce m-3">
+                    <div class="announce_name">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi right_info_icon bi-check-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                        </svg>
+                        实名制购票
+                    </div>
+                    <div class="announce_reason mt-1">
+                        本项目需实名制购票，购票完成后观演人信息不可更改。
+                    </div>
+                </div>
+                <div class="announce m-3">
+                    <div class="announce_name">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi right_info_icon bi-x-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                        不支持选座
+                    </div>
+                    <div class="announce_reason mt-1">
+                        本项目不支持自主选座，同一个订单优先连座
+                    </div>
+                </div>
+                <div class="announce m-3">
+                    <div class="announce_name">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi right_info_icon bi-check-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                        </svg>
+                        电子票
+                    </div>
+                    <div class="announce_reason mt-1">
+                        通过票夹中的二维码验票入场
+                    </div>
+                </div>
+                <div class="announce m-3">
+                    <div class="announce_name">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi right_info_icon bi-check-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                        </svg>
+                        电子发票
+                    </div>
+                    <div class="announce_reason mt-1">
+                        发票开具方：上海携程国际旅行社有限公司
+                        本项目支持开具电子发票。需要在演出开始前在订单详情页提交发票申请，一般演出结束后1个月左右开具并发送至您的邮箱。
+                    </div>
+                </div>
+            </div>
+            <div class="recommend mt-5">
+                <div class="title">
+                    为你推荐
+                </div>
+                <div class="recommed_item">
+                    <img class="item-img" src="../../static/image/cover/{{ top_concert.link }}">
+                    <div class="recommed_word">
+                        <div class="m-2 announce_name">
+                           {{ top_concert.name }}
+                        </div>
+                        <div class="m-2 announce_reason">
+                            {{ top_concert.location }}
+
+                        </div>
+                        <div class="m-2 announce_reason">
+
+                            {{ top_concert.start_time }}
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+<div class="modal" id="paymentModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">支付确认</h5>
+                <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="../../static/image/pay.png">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary close" data-bs-dismiss="modal">取消</button>
+                <button class="btn btn-danger close order_submit" data-bs-target="#successModal" data-bs-toggle="modal">已完成支付</button>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="username" value="{{ session.get('username') }}">
+<!-- 登录提示 Modal -->
+<div class="modal" id="loginModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">通知</h5>
+        <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>先登录再完成此操作</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary close" data-bs-dismiss="modal">确认</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="successModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">通知</h5>
+                <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>支付成功！</p>
+                <p>预售中,待出票</p>
+                <p>您可以在个人信息主页查询到本场演出信息了</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary close" data-bs-dismiss="modal">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="infoModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">通知</h5>
+                <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>请选择必要信息</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary close" data-bs-dismiss="modal">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../static/js/bootstrap.bundle.min.js"></script>
+<script src="../../static/js/jquery-1.12.4.min.js"></script>
+<script src="../../static/js/script.js"></script>
+</body>
+</html>
